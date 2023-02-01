@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    private bool allowedToMove = true;
 
 
 
@@ -28,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
 
     private void FixedUpdate() {
-        if (movement != Vector2.zero) {
+        if (movement != Vector2.zero && allowedToMove == true) {
             animator.SetBool("isMoving",true);
             if(movement.x < 0 ){
                 spriteRenderer.flipX = true;
@@ -74,5 +75,16 @@ public class PlayerController : MonoBehaviour
     }
     void OnMove(InputValue movementInput) {
         movement = movementInput.Get<Vector2>();
+    }
+
+    void OnFire() {
+        animator.SetTrigger("PressAtack");
+    }
+
+    public void enableMove(){
+        allowedToMove = true;
+    }
+    public void disableMove(){
+        allowedToMove = false;
     }
 }
