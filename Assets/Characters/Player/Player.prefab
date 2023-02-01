@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d719978ce410d4bd3b52c9f6f86a3732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {x: 0, y: 0}
   moveSpeed: 1
   collisonOffset: 0.05
   movementFilter:
@@ -150,6 +151,7 @@ MonoBehaviour:
     maxNormalAngle: 0
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  sword: {fileID: 7896068287992743540}
 --- !u!50 &2691232068041906292
 Rigidbody2D:
   serializedVersion: 4
@@ -263,7 +265,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05}
+  m_Offset: {x: 0.11, y: -0.11}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -274,7 +276,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1973216, y: 0.14476702}
+  m_Size: {x: 0.144767, y: 0.1973216}
   m_EdgeRadius: 0
 --- !u!114 &7896068287992743540
 MonoBehaviour:
@@ -288,3 +290,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2c68c504e9844bdad84fb3c4eacb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackDirection: 0

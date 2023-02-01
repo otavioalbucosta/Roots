@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    Vector2 movement;
+    public Vector2 movement;
     Rigidbody2D rb;
     public float moveSpeed = 1;
     public float collisonOffset = 0.05f;
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     private bool allowedToMove = true;
 
-
+    public SwordAttack sword;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +36,12 @@ public class PlayerController : MonoBehaviour
             }else{
                 spriteRenderer.flipX = false;
             }
+            setAttackDirection(movement);
             if (canMove(movement)){
                 rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
                 animator.SetFloat("Horizontal", movement.x);
                 animator.SetFloat("Vertical", movement.y);
+
 
             }else if(canMove(new Vector2(movement.x,0))){
                 rb.MovePosition(rb.position + new Vector2(movement.x,0) * moveSpeed * Time.fixedDeltaTime);
@@ -48,6 +50,7 @@ public class PlayerController : MonoBehaviour
             }else if(canMove(new Vector2(0,movement.y))){
                 rb.MovePosition(rb.position + new Vector2(0,movement.y) * moveSpeed * Time.fixedDeltaTime);
                 animator.SetFloat("Vertical", movement.y);
+
 
             }else{
                 animator.SetBool("isMoving",false);
@@ -79,10 +82,26 @@ public class PlayerController : MonoBehaviour
 
     void OnFire() {
         animator.SetTrigger("PressAtack");
+        sword.Attack();
+    }
+
+    void setAttackDirection(Vector2 lastMovement) {
+        if(lastMovement.x > 0 || (lastMovement.x>0 && lastMovement.y != 0)){
+            sword.attackDirection = SwordAttack.AttackDirection.right;
+        }else if(lastMovement.x < 0 || (lastMovement.x<0 &&lastMovement.y != 0)){
+            sword.attackDirection = SwordAttack.AttackDirection.left;
+        }
+        else if(lastMovement.y > 0){
+            sword.attackDirection = SwordAttack.AttackDirection.top;
+        }else if(lastMovement.y < 0){
+            sword.attackDirection = SwordAttack.AttackDirection.bottom;
+
+        }
     }
 
     public void enableMove(){
         allowedToMove = true;
+        sword.stopAttacking();
     }
     public void disableMove(){
         allowedToMove = false;
