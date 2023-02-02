@@ -7,10 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     public Vector2 movement;
     Rigidbody2D rb;
-    public float moveSpeed = 1;
-    public float collisonOffset = 0.05f;
-    public ContactFilter2D movementFilter;
-    public List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    public float moveSpeed = 10f;
+    public float maxSpeed = 2f;
+    public float idleFriction = 0.9f;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     private bool allowedToMove = true;
@@ -30,52 +29,45 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() {
         if (movement != Vector2.zero && allowedToMove == true) {
+
+
+            
             animator.SetBool("isMoving",true);
+            rb.velocity = Vector2.ClampMagnitude(rb.velocity + (movement * Time.fixedDeltaTime * moveSpeed), maxSpeed);
             if(movement.x < 0 ){
                 spriteRenderer.flipX = true;
             }else{
                 spriteRenderer.flipX = false;
             }
+            
             setAttackDirection(movement);
-            if (canMove(movement)){
-                rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-                animator.SetFloat("Horizontal", movement.x);
-                animator.SetFloat("Vertical", movement.y);
 
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
 
-            }else if(canMove(new Vector2(movement.x,0))){
-                rb.MovePosition(rb.position + new Vector2(movement.x,0) * moveSpeed * Time.fixedDeltaTime);
-                animator.SetFloat("Horizontal", movement.x);
-
-            }else if(canMove(new Vector2(0,movement.y))){
-                rb.MovePosition(rb.position + new Vector2(0,movement.y) * moveSpeed * Time.fixedDeltaTime);
-                animator.SetFloat("Vertical", movement.y);
-
-
-            }else{
-                animator.SetBool("isMoving",false);
-            }
-    }else{
+        }else{
+            rb.velocity = Vector2.Lerp( rb.velocity ,Vector2.zero, idleFriction);
             animator.SetBool("isMoving",false);
+
         }
 
     }
-    bool canMove(Vector2 direction){
-        if (direction != Vector2.zero){
-        int count = rb.Cast(
-                direction,
-                movementFilter,
-                castCollisions,
-                moveSpeed * Time.fixedDeltaTime + collisonOffset);
-            if(count == 0){
-                return true;
-            }else{
-                return false;
-            }
-        }else {
-            return false;
-        }
-    }
+    // bool canMove(Vector2 direction){
+    //     if (direction != Vector2.zero){
+    //     int count = rb.Cast(
+    //             direction,
+    //             movementFilter,
+    //             castCollisions,
+    //             moveSpeed * Time.fixedDeltaTime + collisonOffset);
+    //         if(count == 0){
+    //             return true;
+    //         }else{
+    //             return false;
+    //         }
+    //     }else {
+    //         return false;
+    //     }
+    // }
     void OnMove(InputValue movementInput) {
         movement = movementInput.Get<Vector2>();
     }

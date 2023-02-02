@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3944290460549181196}
   - component: {fileID: 8062465525428990016}
   - component: {fileID: 2691232068041906292}
-  - component: {fileID: 4508832134628730450}
   - component: {fileID: 6271882462413802223}
+  - component: {fileID: 3678668707378185489}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -133,22 +133,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {x: 0, y: 0}
-  moveSpeed: 1
-  collisonOffset: 0.05
-  movementFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
+  moveSpeed: 10
+  maxSpeed: 1.2
+  idleFriction: 9
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   sword: {fileID: 7896068287992743540}
@@ -160,45 +147,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142807852072627159}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!61 &4508832134628730450
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142807852072627159}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0057588387, y: -0.1602674}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.48}
-    newSize: {x: 0.48, y: 0.48}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.09144397, y: 0.021661133}
-  m_EdgeRadius: 0
+  m_Constraints: 4
 --- !u!95 &6271882462413802223
 Animator:
   serializedVersion: 5
@@ -219,6 +180,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!58 &3678668707378185489
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142807852072627159}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0040928386, y: -0.13357294}
+  serializedVersion: 2
+  m_Radius: 0.03491354
 --- !u!1 &7100369351261990315
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,4 +267,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2c68c504e9844bdad84fb3c4eacb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 3
   attackDirection: 0
