@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable
 {
 
     public Animator animator;
+    Rigidbody2D rb;
 
     public float Health {
         set {
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
         }
 
     }
-    private float health = 1f;
+    private float health = 4f;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +33,17 @@ public class Enemy : MonoBehaviour
         
     }
 
-    void takeDamage(float damage){
+    public void OnHit(float damage, Vector2 knockback){
+        Health -= damage;
+        rb = GetComponent<Rigidbody2D>();
+        rb.AddForce(knockback);
+
+
+        animator.SetTrigger("tookDamage");
+        print(Health);
+    }
+
+    public void OnHit(float damage){
         Health -= damage;
     }
 

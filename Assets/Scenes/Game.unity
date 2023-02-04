@@ -12851,6 +12851,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6843736183626799187, guid: ceb66ac4a2e2f4044bba1a012d86524f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ceb66ac4a2e2f4044bba1a012d86524f, type: 3}
 --- !u!1001 &8556100447386827181
@@ -12866,6 +12870,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2185643528189273761, guid: 99a539a4254f6417595187272e60f995, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185643528189273761, guid: 99a539a4254f6417595187272e60f995, type: 3}
+      propertyPath: m_AutoTiling
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2691232068041906292, guid: 99a539a4254f6417595187272e60f995, type: 3}
@@ -12895,6 +12903,10 @@ PrefabInstance:
     - target: {fileID: 4508832134628730450, guid: 99a539a4254f6417595187272e60f995, type: 3}
       propertyPath: m_Offset.y
       value: -0.16753566
+      objectReference: {fileID: 0}
+    - target: {fileID: 7896068287992743540, guid: 99a539a4254f6417595187272e60f995, type: 3}
+      propertyPath: knockbackForce
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7903039443914576085, guid: 99a539a4254f6417595187272e60f995, type: 3}
       propertyPath: m_RootOrder

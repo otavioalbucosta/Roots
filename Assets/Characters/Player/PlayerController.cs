@@ -29,9 +29,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate() {
         if (movement != Vector2.zero && allowedToMove == true) {
-
-
-            
             animator.SetBool("isMoving",true);
             rb.velocity = Vector2.ClampMagnitude(rb.velocity + (movement * Time.fixedDeltaTime * moveSpeed), maxSpeed);
             if(movement.x < 0 ){
@@ -39,7 +36,6 @@ public class PlayerController : MonoBehaviour
             }else{
                 spriteRenderer.flipX = false;
             }
-            
             setAttackDirection(movement);
 
             animator.SetFloat("Horizontal", movement.x);
@@ -52,22 +48,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    // bool canMove(Vector2 direction){
-    //     if (direction != Vector2.zero){
-    //     int count = rb.Cast(
-    //             direction,
-    //             movementFilter,
-    //             castCollisions,
-    //             moveSpeed * Time.fixedDeltaTime + collisonOffset);
-    //         if(count == 0){
-    //             return true;
-    //         }else{
-    //             return false;
-    //         }
-    //     }else {
-    //         return false;
-    //     }
-    // }
     void OnMove(InputValue movementInput) {
         movement = movementInput.Get<Vector2>();
     }
