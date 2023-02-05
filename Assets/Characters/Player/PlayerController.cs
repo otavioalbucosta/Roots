@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamageable
 {
     public Vector2 movement;
     Rigidbody2D rb;
@@ -12,9 +12,24 @@ public class PlayerController : MonoBehaviour
     public float idleFriction = 0.9f;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-    private bool allowedToMove = true;
+    public bool allowedToMove = true;
+    private float _health = 3f;
+    private float iFrameTime = 0.25f;
+
+    public GameOverScreen gameOver;
 
     public SwordAttack sword;
+
+    public float Health { 
+        get {
+            return _health;
+        } set {
+            _health = value;
+            if (_health <=0){
+                HasDefeated();
+            }
+        } 
+        }
 
     // Start is called before the first frame update
     void Start()
@@ -72,10 +87,29 @@ public class PlayerController : MonoBehaviour
     }
 
     public void enableMove(){
+        print("foi");
         allowedToMove = true;
         sword.stopAttacking();
     }
     public void disableMove(){
         allowedToMove = false;
+    }
+
+    public void OnHit(float damage, Vector2 knockback)
+    {
+        print(Health);
+        Health -= damage;
+        rb.AddForce(knockback);
+    }
+
+    public void OnHit(float damage)
+    {
+        Health -= damage;
+    }
+
+    private void HasDefeated(){
+        print("morri");
+        Destroy(gameObject);
+        gameOver.Setup();
     }
 }

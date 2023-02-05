@@ -8,7 +8,7 @@ public class SwordAttack : MonoBehaviour
     Vector2 HorizontalOffset;
     Vector2 HorizontalSize;
     Vector2 VerticalBottomOffset = new Vector2(0.03f,-0.17f);
-    Vector2 VerticalTopOffset = new Vector2(0, -0.05f);
+    Vector2 VerticalTopOffset = new Vector2(0, 0.05f);
     Vector2 VerticalSize = new Vector2(0.1973216f,0.144767f);
 
     public float damage = 1f;
@@ -84,10 +84,10 @@ public class SwordAttack : MonoBehaviour
         if(collider != null ){
             Vector3 parentPosition = gameObject.GetComponentInParent<Transform>().position;
 
-        Vector2 direction = (Vector2) (other.collider.gameObject.transform.position - parentPosition ).normalized;
+            Vector2 direction = (Vector2) (other.collider.gameObject.transform.position - parentPosition ).normalized;
 
-        Vector2 knockbackDirection = direction * knockbackForce;
-        collider.OnHit(damage, knockbackDirection);
+            Vector2 knockbackDirection = direction * knockbackForce;
+            collider.OnHit(damage, knockbackDirection);
         }
 
     }
