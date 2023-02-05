@@ -135,9 +135,11 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   moveSpeed: 10
   maxSpeed: 1.2
-  idleFriction: 9
+  idleFriction: 0.9
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  allowedToMove: 1
+  gameOver: {fileID: 0}
   sword: {fileID: 7896068287992743540}
 --- !u!50 &2691232068041906292
 Rigidbody2D:
@@ -152,8 +154,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 100
-  m_AngularDrag: 1
+  m_LinearDrag: 50
+  m_AngularDrag: 10
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -268,5 +270,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  knockbackForce: 10
+  knockbackForce: 100
   attackDirection: 0

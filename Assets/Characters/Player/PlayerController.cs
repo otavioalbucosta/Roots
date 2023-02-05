@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour, IDamageable
     public SpriteRenderer spriteRenderer;
     public bool allowedToMove = true;
     private float _health = 3f;
-    private float iFrameTime = 0.25f;
+    private float iFrameTime = 1f;
+    private bool iFrameActivated = false;
+    private float elapsedTime = 0f;
 
     public GameOverScreen gameOver;
 
@@ -40,7 +42,15 @@ public class PlayerController : MonoBehaviour, IDamageable
     }
 
     // Update is called once per frame
-
+    private void Update() {
+        if(iFrameActivated){
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime > iFrameTime){
+                iFrameActivated = false;
+                elapsedTime = 0f;
+            }
+        }
+    }
 
     private void FixedUpdate() {
         if (movement != Vector2.zero && allowedToMove == true) {
@@ -56,10 +66,13 @@ public class PlayerController : MonoBehaviour, IDamageable
             animator.SetFloat("Horizontal", movement.x);
             animator.SetFloat("Vertical", movement.y);
 
-        }else{
+        }else if(movement == Vector2.zero && allowedToMove == true){
+
             rb.velocity = Vector2.Lerp( rb.velocity ,Vector2.zero, idleFriction);
             animator.SetBool("isMoving",false);
 
+        }else{
+            animator.SetBool("isMoving",false);
         }
 
     }
@@ -97,14 +110,30 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     public void OnHit(float damage, Vector2 knockback)
     {
-        print(Health);
-        Health -= damage;
-        rb.AddForce(knockback);
+        if(!iFrameActivated){
+            
+            Health -= damage;
+            print(Health);
+            rb.velocity = Vector2.zero;
+
+            rb.AddForce(knockback);
+            while(rb.velocity!= Vector2.zero){
+                allowedToMove = false;
+            }
+            allowedToMove = true;
+            iFrameActivated = true;
+        }
+
     }
 
     public void OnHit(float damage)
     {
-        Health -= damage;
+        if(!iFrameActivated){
+
+            Health -= damage;
+            print(Health);
+            iFrameActivated = true;
+        }
     }
 
     private void HasDefeated(){

@@ -12,7 +12,7 @@ public class SwordAttack : MonoBehaviour
     Vector2 VerticalSize = new Vector2(0.1973216f,0.144767f);
 
     public float damage = 1f;
-    public float knockbackForce = 10f;
+    public float knockbackForce = 100f;
     
     BoxCollider2D attackCollider;
 

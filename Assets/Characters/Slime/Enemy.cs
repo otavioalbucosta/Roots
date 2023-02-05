@@ -83,6 +83,19 @@ public class Enemy : MonoBehaviour, IDamageable
         Vector2 knockbackDirection = direction * knockbackForce;
         if (other.collider.gameObject.tag == "Player"){
             collider.OnHit(damage,knockbackDirection);
+            rb.AddForce(knockbackDirection*-1);
+        }
+    }
+    private void OnCollisionStay2D(Collision2D other) {
+        IDamageable collider = other.collider.GetComponent<IDamageable>();
+
+        Vector3 pos = GetComponent<Transform>().position;
+        
+        Vector2 direction = (Vector2) (other.collider.gameObject.transform.position - pos).normalized;
+
+        Vector2 knockbackDirection = direction * knockbackForce;
+        if (other.collider.gameObject.tag == "Player"){
+            collider.OnHit(damage,knockbackDirection);
         }
     }
 }
