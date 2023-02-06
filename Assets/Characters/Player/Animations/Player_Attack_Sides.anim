@@ -20,15 +20,17 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 90efa686908e04c46ac69b2cd826cf13, type: 3}
+      value: {fileID: 21300000, guid: 59d7a4f94d0cc4663ac3cedf45680e9c, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: 39028bb480ec641bd8e91c1ec651b3d1, type: 3}
+      value: {fileID: 21300000, guid: 91a963e9ad11c4c8ea627d06eb639ca1, type: 3}
     - time: 0.2
-      value: {fileID: 21300000, guid: 21d2f6a24b6d94a529d1b59e66570ac7, type: 3}
+      value: {fileID: 21300000, guid: b69ca7d254592474abd9c399f0b0abfb, type: 3}
     - time: 0.3
-      value: {fileID: 21300000, guid: a7d67dfde53da4d93b71b377fab93e7c, type: 3}
+      value: {fileID: 21300000, guid: cc13a89ab529149cbade8261ec757a05, type: 3}
     - time: 0.4
-      value: {fileID: 21300000, guid: 27c05c6d5161b4357aa2e6f8ff40b22d, type: 3}
+      value: {fileID: 21300000, guid: 89b246054071c4ee38c221f70159e20d, type: 3}
+    - time: 0.5
+      value: {fileID: 21300000, guid: fb9d5b40f0ae94672b6d2a34df427da7, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,17 +50,18 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 90efa686908e04c46ac69b2cd826cf13, type: 3}
-    - {fileID: 21300000, guid: 39028bb480ec641bd8e91c1ec651b3d1, type: 3}
-    - {fileID: 21300000, guid: 21d2f6a24b6d94a529d1b59e66570ac7, type: 3}
-    - {fileID: 21300000, guid: a7d67dfde53da4d93b71b377fab93e7c, type: 3}
-    - {fileID: 21300000, guid: 27c05c6d5161b4357aa2e6f8ff40b22d, type: 3}
+    - {fileID: 21300000, guid: 59d7a4f94d0cc4663ac3cedf45680e9c, type: 3}
+    - {fileID: 21300000, guid: 91a963e9ad11c4c8ea627d06eb639ca1, type: 3}
+    - {fileID: 21300000, guid: b69ca7d254592474abd9c399f0b0abfb, type: 3}
+    - {fileID: 21300000, guid: cc13a89ab529149cbade8261ec757a05, type: 3}
+    - {fileID: 21300000, guid: 89b246054071c4ee38c221f70159e20d, type: 3}
+    - {fileID: 21300000, guid: fb9d5b40f0ae94672b6d2a34df427da7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.6
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -85,7 +88,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.4
+  - time: 0.5
     functionName: enableMove
     data: 
     objectReferenceParameter: {fileID: 0}
